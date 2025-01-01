@@ -1,5 +1,5 @@
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:password_manager/core/constants/app_keys.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class PreferencesService {
   static SharedPreferences? _sharedPreferences;

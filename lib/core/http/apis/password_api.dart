@@ -3,13 +3,13 @@ import 'package:password_manager/core/http/request_handler.dart';
 import 'package:password_manager/core/http/request_method.dart';
 
 class PasswordApi extends ApiConfig {
-  static final _generatePassword =
+  static const _generatePassword =
       PasswordApi(path: 'generate', method: RequestMethod.get);
 
-  static final _checkStrength =
+  static const _checkStrength =
       PasswordApi(path: 'strength', method: RequestMethod.get);
 
-  PasswordApi(
+  const PasswordApi(
       {super.module = 'password',
       required super.path,
       required super.method,

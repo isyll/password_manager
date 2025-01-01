@@ -30,7 +30,19 @@ abstract class ApiConfig {
       this.isAuth = true,
       this.module = ''});
 
-  /// Sends a network request to the specified URL.
+  /// Sends an HTTP request to the specified URL with the given parameters.
+  ///
+  /// This function takes a URL and an optional map of parameters, constructs
+  /// the request, and sends it. It returns the response from the server.
+  ///
+  /// Parameters:
+  /// - `urlParam` (String?): An optional URL parameter.
+  /// - `body` (RequestBody?): An optional request body.
+  /// - `headersCustom` (ApiHeaderType?): An optional map of custom headers.
+  /// - `queryParams` (Map&lt;String, String?&gt;?): An optional map of query parameters.
+  ///
+  /// Returns:
+  /// - `Future<ResponseModel>`: A future that completes with the server's response.
   Future<ResponseModel> sendRequest(
       {String? urlParam,
       RequestBody? body,
@@ -93,7 +105,22 @@ abstract class ApiConfig {
     return '$urlString?$queryString';
   }
 
-  /// Helper function to safely concatenate URL segments.
+  /// Joins multiple URL segments into a single URL string.
+  ///
+  /// This function takes all segments defined in ApiConfig and concatenates
+  /// them into a single URL string, ensuring that there are no duplicate
+  /// slashes between segments. It also handles leading and trailing slashes
+  /// appropriately.
+  ///
+  /// Example:
+  /// ```dart
+  /// final urlParam = 12;
+  /// final url = _joinUrlSegments(urlParam);
+  /// print(url); // Output: http://example.com/users/12
+  /// ```
+  ///
+  /// - Parameter segments: A list of URL segments to be joined.
+  /// - Returns: A single URL string formed by concatenating the input segments.
   String _joinUrlSegments(String? urlParam) {
     final segments = [baseUrl, module, path, urlParam ?? ''];
 

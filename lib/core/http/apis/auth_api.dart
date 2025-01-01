@@ -4,12 +4,12 @@ import 'package:password_manager/core/http/request_method.dart';
 import 'package:password_manager/models/auth/signin_credentials.dart';
 
 class AuthApi extends ApiConfig {
-  static final _refreshToken =
+  static const _refreshToken =
       AuthApi(path: 'refresh-token', method: RequestMethod.post, isAuth: true);
 
-  static final _signin = AuthApi(path: 'signin', method: RequestMethod.post);
+  static const _signin = AuthApi(path: 'signin', method: RequestMethod.post);
 
-  AuthApi(
+  const AuthApi(
       {super.module = 'auth',
       required super.path,
       required super.method,

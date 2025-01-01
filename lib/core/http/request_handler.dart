@@ -1,15 +1,14 @@
 import 'dart:convert';
 
 import 'package:flutter/foundation.dart';
-import 'package:password_manager/core/constants/app_config.dart';
 import 'package:password_manager/core/http/api_config.dart';
-import 'package:password_manager/core/http/apis/auth_api.dart';
 import 'package:password_manager/core/http/request_method.dart';
-import 'package:password_manager/models/auth/signin_response.dart';
-import 'package:password_manager/services/preferences_service.dart';
-import 'package:password_manager/services/secure_storage.dart';
 
 class RequestHandler {
+  static Future<String?> Function()? getAccessTokenFn;
+  static Future<String?> Function()? refreshTokenFn;
+  static String Function()? getLocaleFn;
+
   /// The [urlString] is retrieved from api object.
   /// The [method] is obtained using object.value.method.
   /// For authorized requests, set [authorized] to true.
@@ -26,22 +25,25 @@ class RequestHandler {
         print(json.encode(body));
       }
 
-      final token = await SecureStorage.getAccessToken();
-      final locale = PreferencesService.getLocale() ??
-          AppConfig.defaultLocale.languageCode;
-
       // set the Headers
       final headers = {
         'Content-Type': 'application/json; charset=utf-8',
         'Accept': 'application/json',
-        'Accept-Language': locale,
         'Cache-Control': 'no-cache',
-        if (authorized) 'Authorization': 'Bearer $token',
         if (headersCustom != null) ...headersCustom,
       };
 
+      if (getLocaleFn != null) {
+        headers['Accept-Language'] = getLocaleFn!();
+      }
+
+      if (authorized) {
+        final token = await getAccessTokenFn!();
+        headers['Authorization'] = 'Bearer $token';
+      }
+
       // Api call
-      var response = await method.apiCall(Uri.parse(urlString),
+      final response = await method.apiCall(Uri.parse(urlString),
           headers: headers, body: json.encode(body));
 
       // Setting Response Body
@@ -56,17 +58,6 @@ class RequestHandler {
       }
       rethrow;
     }
-  }
-
-  static Future<String?> refreshToken() async {
-    final response = await AuthApi.refreshToken();
-
-    if (response.status) {
-      final data = SigninResponse.fromMap(response.data!);
-      await SecureStorage.saveTokens(data.accessToken, data.refreshToken);
-      return data.accessToken;
-    }
-    return null;
   }
 }
 
