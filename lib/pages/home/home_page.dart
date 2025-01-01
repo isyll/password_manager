@@ -1,4 +1,4 @@
-import 'package:flutter/widgets.dart';
+import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {
   static const routeName = '/home';
@@ -11,6 +11,11 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return SafeArea(
+        child: Scaffold(
+      body: Center(
+        child: Text('Home Page'),
+      ),
+    ));
   }
 }

@@ -77,11 +77,12 @@ class ResponseModel {
 
   factory ResponseModel.fromMap(Map<String, dynamic> map) {
     return ResponseModel(
-        message: map['message'],
-        status: map['status'],
-        statusCode: map['status_code'],
-        data: map['data'],
-        errors: map['errors']);
+        message: map['message'] as String?,
+        status: map['status'] as bool,
+        statusCode: map['status_code'] as int,
+        data: map['data'] as Map<String, dynamic>?,
+        errors: (map['errors'] as Map<String, dynamic>?)
+            ?.map((key, value) => MapEntry(key, value.toString())));
   }
 
   /// Convert the ResponseModel instance to a Map

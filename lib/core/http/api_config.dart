@@ -83,7 +83,7 @@ abstract class ApiConfig {
       return '${param.key}=${Uri.encodeComponent(param.value!.trim())}';
     }).where((param) => param != null);
 
-    return params.join('&');
+    return '?${params.join('&')}';
   }
 
   /// Constructs a URL string based on the provided parameters.
@@ -102,7 +102,7 @@ abstract class ApiConfig {
   String _getUrlString(Map<String, String?>? queryParams, String? urlParam) {
     final queryString = _buildQueryString(queryParams);
     final urlString = _joinUrlSegments(urlParam);
-    return '$urlString?$queryString';
+    return '$urlString$queryString';
   }
 
   /// Joins multiple URL segments into a single URL string.

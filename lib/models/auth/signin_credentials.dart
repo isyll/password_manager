@@ -1,18 +1,18 @@
 class SigninCredentials {
-  String? username;
+  String? email;
   String? password;
 
   SigninCredentials({
-    this.username,
+    this.email,
     this.password,
   });
 
-  bool get isValid => username != null && password != null;
+  bool get isValid => email != null && password != null;
 
   Map<String, dynamic> toMap() {
-    final result = <String, dynamic>{};
+    final result = <String, String?>{};
 
-    result.addAll({'username': username});
+    result.addAll({'email': email});
     result.addAll({'password': password});
 
     return result;

@@ -2,5 +2,15 @@
   "@@author": "Ibrahima Sylla",
   "@@locale": "fr",
   "signin": "Connexion",
-  "@signin": {}
+  "@signin": {},
+  "email": "Adresse e-mail",
+  "@email": {},
+  "password": "Mot de passe",
+  "@password": {},
+  "email_required": "L'adresse e-mail est obligatoire",
+  "@email_required": {},
+  "password_required": "Le mot de passe est obligatoire",
+  "@password_required": {},
+  "sign_in_to_your_account": "Connectez-vous à votre compte",
+  "@sign_in_to_your_account": {}
 }
