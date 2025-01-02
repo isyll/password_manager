@@ -1,6 +1,14 @@
 {
   "@@author": "Ibrahima Sylla",
   "@@locale": "fr",
+  "greeting": "Bonjour, {name}",
+  "@greeting": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
   "signin": "Connexion",
   "@signin": {},
   "email": "Adresse e-mail",

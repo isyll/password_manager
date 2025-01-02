@@ -39,7 +39,7 @@ class _PasswordManagerAppState extends State<PasswordManagerApp> {
         theme: AppTheme.light,
         locale: AppConfig.defaultLocale,
         supportedLocales: AppConfig.availableLocales,
-        initialRoute: SigninPage.routeName,
+        initialRoute: HomePage  .routeName,
         routes: {
           HomePage.routeName: (context) => const HomePage(),
           SigninPage.routeName: (context) => const SigninPage(),
