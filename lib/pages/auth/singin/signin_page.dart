@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:loader_overlay/loader_overlay.dart';
 import 'package:password_manager/core/extensions/context_extension.dart';
 import 'package:password_manager/core/http/apis/auth_api.dart';
 import 'package:password_manager/models/auth/signin_credentials.dart';
@@ -56,6 +57,7 @@ class _SigninPageState extends State<SigninPage> {
           height: 38,
         ),
         TextFormField(
+          keyboardType: TextInputType.emailAddress,
           decoration: InputDecoration(
             hintText: context.l.email,
             errorText: _errors['email'],
@@ -100,7 +102,9 @@ class _SigninPageState extends State<SigninPage> {
   void _onSubmit() async {
     _formKey.currentState!.save();
     if (_credentials.isValid) {
+      context.loaderOverlay.show();
       final response = await AuthApi.signin(_credentials);
+      if (mounted) context.loaderOverlay.hide();
       if (response.status) {
         final data = SigninResponse.fromMap(response.data!);
         await SecureStorage.saveTokens(data.accessToken, data.refreshToken);

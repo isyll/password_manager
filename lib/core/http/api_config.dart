@@ -91,7 +91,7 @@ abstract class ApiConfig {
   /// Example usage:
   /// ```dart
   /// String url = _getUrlString({'key1': 'value1', 'key2': 'value2'}, 'param');
-  /// print(url); // Output: https://example.com/param?key1=value1&key2=value2
+  /// print(url); // Output: ?key1=value1&key2=value2
   /// ```
   ///
   /// - Parameters:
