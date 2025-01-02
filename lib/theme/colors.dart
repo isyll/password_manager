@@ -7,6 +7,7 @@ class AppColors {
       onPrimary: Color(0xffffffff),
       secondary: Color(0xffeef0f2),
       onSecondary: Color(0xff526578),
+      tertiary: Color(0xff758393),
       error: Color(0xffd32f2f),
       onError: Color(0xffffffff),
       surface: Color(0xffffffff),
